@@ -3,8 +3,9 @@
 echo "[INFO] install python 3"
 sudo apt-get install -y python3-dev python3-py python3-pytest python3-pip
 
-echo "[INFO] installing PIL"
-pip3 install Pillow
+sudo apt-get install -y cmake
+sudo apt-get install -y ninja
+sudo apt-get install -y git
 
 echo "[INFO] installing deps for pytorch"
 sudo -H pip3 install Cython
@@ -31,4 +32,3 @@ sudo -H pip3 install torchvision
 echo "[INFO] removing pytorch files"
 cd ../
 sudo rm -rf pytorch
-
