@@ -30,6 +30,9 @@ def speed_test():
     detect_time = 0
     detect_num = 0
 
+    # skip first predict because it may go longer
+    detect_faces(images[0])
+
     for image in images:
         start_time = time()
         detect_faces(image)
