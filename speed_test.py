@@ -35,6 +35,7 @@ def speed_test():
     predictor.predict_bounding_boxes(images[0])
 
     for image in images:
+        image = cv2.resize(image, (640, 480))
         timer.start()
         predictor.predict_bounding_boxes(image)
         timer.stop()
