@@ -4,7 +4,7 @@ Repository of pytorch mtcnn model speed measuring.
 There is a problem that mtcnn on jetpack 4.2 and 3.3 predictions take different time on jetson tx2.
 
 ## Dependencies
-opencv 3.4.1, pytorch (v1.0.0), numpy (use ./installs.sh)
+opencv 3.4.1, pytorch (v1.0.0), numpy (you can use ./installs.sh for pytorch)
 
 ## Model 
 This repository use pretrained mtcnn face detector from https://github.com/TropComplique/mtcnn-pytorch
