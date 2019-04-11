@@ -1,7 +1,6 @@
 import os
-from time import time
-from PIL import Image
-from mtcnn_pytorch.src import detect_faces
+import cv2
+from mtcnn_pytorch.src.detector import Predictor
 
 
 def get_images():
@@ -15,7 +14,7 @@ def get_images():
 
         if file.endswith('.jpg'):
             try:
-                image = Image.open(source_image)
+                image = cv2.imread(source_image)
                 images.append(image)
             except FileExistsError:
                 print('Problem with file {}'.format(source_image))
@@ -29,20 +28,24 @@ def speed_test():
 
     detect_time = 0
     detect_num = 0
+    timer = cv2.TickMeter()
+    predictor = Predictor()
 
     # skip first predict because it may go longer
-    detect_faces(images[0])
+    predictor.predict_bounding_boxes(images[0])
 
     for image in images:
-        start_time = time()
-        detect_faces(image)
-        end_time = time()
+        timer.start()
+        predictor.predict_bounding_boxes(image)
+        timer.stop()
 
-        detect_time += (end_time - start_time)
+        detect_time += timer.getTimeMilli()
         detect_num += 1
 
+        timer.reset()
+
     average_time = detect_time / detect_num
-    print("average mtcnn prediction_time {}".format(average_time))
+    print("average mtcnn prediction_time {} msec".format(average_time))
 
     return
 
