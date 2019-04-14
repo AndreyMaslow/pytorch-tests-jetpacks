@@ -9,7 +9,6 @@ def get_images():
     images = []
 
     for file in os.listdir(images_dir):
-
         source_image = os.path.join(images_dir, file)
 
         if file.endswith('.jpg'):
